@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-func getBearerToken(user: String, password: String,completionHandler: @escaping (String) -> ()) -> ()
+func getBearerToken(user: String, password: String,completionHandler: @escaping (String,Bool) -> ()) -> ()
 {
     var headers: HTTPHeaders = [:]
     
@@ -19,17 +19,23 @@ func getBearerToken(user: String, password: String,completionHandler: @escaping 
     
     var bearerToken:String = ""
     
-    Alamofire.request("http://api.develop.cloudconfidant.com/profileManagementService/webapi/v1/token/test@cloudconfidant.com", headers: headers)
+    Alamofire.request("http://api.develop.cloudconfidant.com/profileManagementService/webapi/v1/token/teest@cloudconfidant.com", headers: headers)
         .responseJSON {response  in
-            let json = response.result.value as? [String: Any]
-            let token = json?["token"] as? String
-            if((token) != nil){
-                bearerToken =  token!
-                completionHandler(bearerToken)
-            }
-            else{
+            switch response.result {
+            case .success:
+                print("Validation Successful")
+                let json = response.result.value as? [String: Any]
+                let token = json?["token"] as? String
+                if((token) != nil){
+                    bearerToken =  token!
+                    completionHandler(bearerToken,true)
+                }
+
+            case .failure(let error):
+                print(error)
                 bearerToken =  "None"
-                completionHandler(bearerToken)
+                completionHandler(bearerToken,false)
+
             }
 
     }

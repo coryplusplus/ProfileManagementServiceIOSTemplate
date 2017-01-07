@@ -15,8 +15,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        getBearerToken(user: "test@cloudconfidant.com", password: "Password123!@#", completionHandler: {token in
-            self.bearerToken.text = token
+        getBearerToken(user: "test@cloudconfidant.com", password: "Password123!@#", completionHandler: {(token,success) in
+            if(success)
+            {
+                self.bearerToken.text = token
+            }
+            else{
+                let alertController = UIAlertController(title: "Error", message:
+                    "Unable to retrive bearer token! Please make sure your CloudConfidant username and password is correct in the source code", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+
+            }
         })
         
         
