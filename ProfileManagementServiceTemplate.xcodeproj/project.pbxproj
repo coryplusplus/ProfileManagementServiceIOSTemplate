@@ -16,6 +16,8 @@
 		A19D336E1E214E700010DC49 /* ProfileManagementServiceTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D336D1E214E700010DC49 /* ProfileManagementServiceTemplateTests.swift */; };
 		A19D33791E214E700010DC49 /* ProfileManagementServiceTemplateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33781E214E700010DC49 /* ProfileManagementServiceTemplateUITests.swift */; };
 		A19D338A1E216AEF0010DC49 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33891E216AEF0010DC49 /* Networking.swift */; };
+		A19D338D1E21BF1E0010DC49 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D338C1E21BF1E0010DC49 /* CreateProfileViewController.swift */; };
+		A19D338F1E21C2A40010DC49 /* ProfileEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D338E1E21C2A40010DC49 /* ProfileEndpoints.swift */; };
 		E7CA79A963DAA308D8F9CE0C /* Pods_ProfileManagementServiceTemplateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7FDD8A9BE5425D7EE18066 /* Pods_ProfileManagementServiceTemplateUITests.framework */; };
 		FDC64606ECDE355567C3B06E /* Pods_ProfileManagementServiceTemplateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22C750EFD07AB5B001CCF6B /* Pods_ProfileManagementServiceTemplateTests.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +61,8 @@
 		A19D33781E214E700010DC49 /* ProfileManagementServiceTemplateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagementServiceTemplateUITests.swift; sourceTree = "<group>"; };
 		A19D337A1E214E700010DC49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A19D33891E216AEF0010DC49 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		A19D338C1E21BF1E0010DC49 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
+		A19D338E1E21C2A40010DC49 /* ProfileEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEndpoints.swift; sourceTree = "<group>"; };
 		C22C750EFD07AB5B001CCF6B /* Pods_ProfileManagementServiceTemplateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProfileManagementServiceTemplateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED0EE2203B837417EFA79FD /* Pods_ProfileManagementServiceTemplate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProfileManagementServiceTemplate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -139,9 +143,9 @@
 		A19D33571E214E700010DC49 /* ProfileManagementServiceTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				A19D338B1E21BF0A0010DC49 /* Controllers */,
 				A19D33881E216AE00010DC49 /* Networking */,
 				A19D33581E214E700010DC49 /* AppDelegate.swift */,
-				A19D335A1E214E700010DC49 /* ViewController.swift */,
 				A19D335C1E214E700010DC49 /* Main.storyboard */,
 				A19D335F1E214E700010DC49 /* Assets.xcassets */,
 				A19D33611E214E700010DC49 /* LaunchScreen.storyboard */,
@@ -172,8 +176,18 @@
 			isa = PBXGroup;
 			children = (
 				A19D33891E216AEF0010DC49 /* Networking.swift */,
+				A19D338E1E21C2A40010DC49 /* ProfileEndpoints.swift */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		A19D338B1E21BF0A0010DC49 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A19D335A1E214E700010DC49 /* ViewController.swift */,
+				A19D338C1E21BF1E0010DC49 /* CreateProfileViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,8 +471,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A19D338D1E21BF1E0010DC49 /* CreateProfileViewController.swift in Sources */,
 				A19D338A1E216AEF0010DC49 /* Networking.swift in Sources */,
 				A19D335B1E214E700010DC49 /* ViewController.swift in Sources */,
+				A19D338F1E21C2A40010DC49 /* ProfileEndpoints.swift in Sources */,
 				A19D33591E214E700010DC49 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

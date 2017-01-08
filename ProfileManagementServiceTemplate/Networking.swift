@@ -9,6 +9,15 @@
 import Foundation
 import Alamofire
 
+
+var bearerToken: String = ""
+var defaultHeaders: HTTPHeaders = [:]
+var baseURL : String = "http://api.develop.cloudconfidant.com/profileManagementService/webapi/v1"
+
+func getBaseURL() -> String
+{
+    return baseURL
+}
 func getBearerToken(user: String, password: String,completionHandler: @escaping (String,Bool) -> ()) -> ()
 {
     var headers: HTTPHeaders = [:]
@@ -19,7 +28,7 @@ func getBearerToken(user: String, password: String,completionHandler: @escaping 
     
     var bearerToken:String = ""
     
-    Alamofire.request("http://api.develop.cloudconfidant.com/profileManagementService/webapi/v1/token/teest@cloudconfidant.com", headers: headers)
+    Alamofire.request("\(baseURL)/token/test@cloudconfidant.com", headers: headers)
         .responseJSON {response  in
             switch response.result {
             case .success:
@@ -28,6 +37,7 @@ func getBearerToken(user: String, password: String,completionHandler: @escaping 
                 let token = json?["token"] as? String
                 if((token) != nil){
                     bearerToken =  token!
+                    setBearerToken(token: bearerToken)
                     completionHandler(bearerToken,true)
                 }
 
@@ -40,4 +50,18 @@ func getBearerToken(user: String, password: String,completionHandler: @escaping 
 
     }
     
+}
+
+func addToDefaultHeader(key: String, value: String)
+{
+    print("Adding key:\(key) with value \(value) to default headers")
+    defaultHeaders[key] = value
+
+}
+
+func setBearerToken(token: String)
+{
+    bearerToken = token
+    print("Set bearer token to \(bearerToken)")
+    addToDefaultHeader(key: "Authorization", value: "Bearer \(bearerToken)")
 }
