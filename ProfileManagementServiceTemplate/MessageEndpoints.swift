@@ -33,3 +33,34 @@ func getMessages(queryParameters : String, completionHandler: @escaping ([[Strin
     }
     
 }
+
+func createMessage(parameters:Parameters,completionHandler: @escaping (String,Bool) -> () ) -> ()
+{
+    
+    Alamofire.request("\(getBaseURL())/messages", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: defaultHeaders)
+        .responseJSON {response  in
+            switch response.result {
+            case .success:
+                let json = response.result.value as? [String: Any]
+                print(json)
+                
+                if let errorMessage = json?["errorMessage"] as? String
+                {
+                    completionHandler(errorMessage, false)
+                }
+                else
+                {
+                    completionHandler("Creation Successful",true)
+                }
+                
+                
+            case .failure(let error):
+                print(error)
+                bearerToken =  "None"
+                completionHandler("FAILURE",false)
+                
+            }
+            
+    }
+    
+}

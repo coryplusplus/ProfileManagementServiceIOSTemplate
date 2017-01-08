@@ -16,13 +16,15 @@
 
 import UIKit
 import Foundation
+import Alamofire
 
 
 
-class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate {
+class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate, UITextViewDelegate {
     @IBOutlet
     var tableView: UITableView!
     
+    @IBOutlet weak var addMessageTextView: UITextView!
     var messages : [[String:Any]] = []
     var currentMessage :[String:Any] = [:]
     var start = 0
@@ -30,6 +32,8 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     
+    @IBOutlet weak var clearMessage: UIButton!
+    @IBOutlet weak var postMessage: UIButton!
     let keywordCharacters = NSCharacterSet.alphanumerics
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var nextButton: UIButton!
@@ -48,6 +52,8 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        addMessageTextView.delegate = self
+        
         populateMessages(queryParams: getQueryParams(start: start, size: size, keyword: searchBar.text!))
         refreshTable()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MessageFeedController.DismissKeyboard))
@@ -80,6 +86,13 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         self.isLoadingMore = false
     }
     
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if(addMessageTextView.text! == "What's on your mind?")
+        {
+            addMessageTextView.text = ""
+        }
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         
@@ -209,6 +222,40 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
             self.isLoadingMore = true
             self.getNextRequests()
         }
+    }
+    
+    @IBAction func clearMessage(_ sender: AnyObject) {
+        addMessageTextView.text = ""
+    }
+    
+    @IBAction func postMessage(_ sender: AnyObject) {
+        
+        var parameters: Parameters = [:]
+        parameters["author"] = loggedInUser
+        parameters["message"] = addMessageTextView.text!
+        parameters["messageName"] = "Message"
+        createMessage(parameters: parameters, completionHandler: {(message,success) in
+            if(success)
+            {
+                self.messages = []
+                self.currentMessage = [:]
+                self.start = 0
+                self.populateMessages(queryParams: self.getQueryParams(start: 0, size: 10, keyword: self.searchBar.text!))
+                self.refreshTable()
+                self.addMessageTextView.text = "What's on your mind?"
+            }
+            else{
+                let alertController = UIAlertController(title: "Error", message:
+                    message, preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+                
+            }
+            
+            }
+        )
+
     }
     
     

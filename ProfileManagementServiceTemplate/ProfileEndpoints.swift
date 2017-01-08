@@ -57,6 +57,7 @@ func validatePassword(parameters:Parameters,completionHandler: @escaping (String
                 }
                 else
                 {
+                    setLoggedInUser(username: parameters["profileName"] as! String)
                     completionHandler("Login Successful",true)
                 }
                 

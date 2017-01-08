@@ -70,21 +70,50 @@
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="GTH-oz-gZm">
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What's on your mind?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jsa-PS-77N">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="91" id="yGR-lT-DLy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZ5-d3-fm7">
+                                <state key="normal" title="Post"/>
+                                <connections>
+                                    <action selector="postMessage:" destination="9s4-I0-ZXz" eventType="touchUpInside" id="UAb-5x-Cxh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIi-48-Xh0">
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="clearMessage:" destination="9s4-I0-ZXz" eventType="touchUpInside" id="Amz-aq-uN8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tb1-bx-l04" firstAttribute="centerX" secondItem="GTH-oz-gZm" secondAttribute="centerX" id="4XM-PL-jR8"/>
-                            <constraint firstItem="h5h-kg-uJp" firstAttribute="leading" secondItem="NaN-6I-avu" secondAttribute="leadingMargin" id="50G-Ps-PBP"/>
-                            <constraint firstItem="GTH-oz-gZm" firstAttribute="top" secondItem="tb1-bx-l04" secondAttribute="bottom" constant="7" id="6gB-cA-8tZ"/>
-                            <constraint firstAttribute="bottom" secondItem="h5h-kg-uJp" secondAttribute="bottom" constant="20" symbolic="YES" id="Odk-WP-qqO"/>
-                            <constraint firstAttribute="trailing" secondItem="GTH-oz-gZm" secondAttribute="trailing" id="Tkx-Qj-XxH"/>
-                            <constraint firstItem="GTH-oz-gZm" firstAttribute="leading" secondItem="NaN-6I-avu" secondAttribute="leading" id="bW9-lg-0a6"/>
-                            <constraint firstItem="tb1-bx-l04" firstAttribute="top" secondItem="Cq4-9G-gVa" secondAttribute="bottom" constant="21" id="pUV-57-cvn"/>
-                            <constraint firstItem="h5h-kg-uJp" firstAttribute="top" secondItem="GTH-oz-gZm" secondAttribute="bottom" constant="21" id="tFW-L9-Erp"/>
-                            <constraint firstItem="GTH-oz-gZm" firstAttribute="centerX" secondItem="h5h-kg-uJp" secondAttribute="centerX" id="uIi-fB-hSa"/>
+                            <constraint firstItem="jsa-PS-77N" firstAttribute="leading" secondItem="GIi-48-Xh0" secondAttribute="leading" id="3fI-IB-D8Q"/>
+                            <constraint firstItem="GTH-oz-gZm" firstAttribute="leading" secondItem="NaN-6I-avu" secondAttribute="leading" id="3jV-Mh-ZdG"/>
+                            <constraint firstItem="GIi-48-Xh0" firstAttribute="top" secondItem="jsa-PS-77N" secondAttribute="bottom" constant="8" symbolic="YES" id="BA3-IZ-c7n"/>
+                            <constraint firstItem="h5h-kg-uJp" firstAttribute="top" secondItem="GIi-48-Xh0" secondAttribute="bottom" constant="18" id="D5r-eH-ray"/>
+                            <constraint firstItem="GIi-48-Xh0" firstAttribute="leading" secondItem="h5h-kg-uJp" secondAttribute="leading" id="DKy-BO-MzR"/>
+                            <constraint firstItem="tb1-bx-l04" firstAttribute="centerX" secondItem="GTH-oz-gZm" secondAttribute="centerX" id="QUH-Cj-IeG"/>
+                            <constraint firstItem="jsa-PS-77N" firstAttribute="leading" secondItem="NaN-6I-avu" secondAttribute="leadingMargin" id="RDi-in-2zd"/>
+                            <constraint firstItem="GTH-oz-gZm" firstAttribute="top" secondItem="tb1-bx-l04" secondAttribute="bottom" constant="7" id="RSH-Hi-5wp"/>
+                            <constraint firstItem="tb1-bx-l04" firstAttribute="top" secondItem="Cq4-9G-gVa" secondAttribute="bottom" constant="21" id="URt-6d-j5Q"/>
+                            <constraint firstItem="jsa-PS-77N" firstAttribute="trailing" secondItem="IZ5-d3-fm7" secondAttribute="trailing" id="WFr-7g-8Pp"/>
+                            <constraint firstItem="GTH-oz-gZm" firstAttribute="centerX" secondItem="jsa-PS-77N" secondAttribute="centerX" id="Wjj-4l-vWp"/>
+                            <constraint firstItem="jsa-PS-77N" firstAttribute="top" secondItem="GTH-oz-gZm" secondAttribute="bottom" constant="16" id="YJ6-61-dI4"/>
+                            <constraint firstItem="IZ5-d3-fm7" firstAttribute="trailing" secondItem="h5h-kg-uJp" secondAttribute="trailing" id="al5-NX-zrQ"/>
+                            <constraint firstAttribute="bottom" secondItem="h5h-kg-uJp" secondAttribute="bottom" constant="20" symbolic="YES" id="pxC-sP-Zop"/>
+                            <constraint firstItem="GIi-48-Xh0" firstAttribute="baseline" secondItem="IZ5-d3-fm7" secondAttribute="baseline" id="tU4-LJ-ooL"/>
+                            <constraint firstAttribute="trailing" secondItem="GTH-oz-gZm" secondAttribute="trailing" id="wGz-wB-aG2"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addMessageTextView" destination="jsa-PS-77N" id="baG-Nh-6mP"/>
+                        <outlet property="clearMessage" destination="GIi-48-Xh0" id="Ula-Nz-I9d"/>
                         <outlet property="searchBar" destination="GTH-oz-gZm" id="hV0-qf-ND3"/>
                         <outlet property="tableView" destination="h5h-kg-uJp" id="vHC-Ao-FMY"/>
                     </connections>

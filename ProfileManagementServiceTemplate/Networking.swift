@@ -13,6 +13,12 @@ import Alamofire
 var bearerToken: String = ""
 var defaultHeaders: HTTPHeaders = [:]
 var baseURL : String = "http://api.develop.cloudconfidant.com/profileManagementService/webapi/v1"
+var loggedInUser: String = ""
+
+func setLoggedInUser(username : String)
+{
+    loggedInUser = username
+}
 
 func getBaseURL() -> String
 {
