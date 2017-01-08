@@ -20,10 +20,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+
         // Do any additional setup after loading the view, typically from a nib.
         getBearerToken(user: "test@cloudconfidant.com", password: "Password123!@#", completionHandler: {(token,success) in
             if(success)
             {
+                
             }
             else{
                 let alertController = UIAlertController(title: "Error", message:
@@ -34,6 +38,9 @@ class ViewController: UIViewController {
 
             }
         })
+        
+        
+
         
         
     }

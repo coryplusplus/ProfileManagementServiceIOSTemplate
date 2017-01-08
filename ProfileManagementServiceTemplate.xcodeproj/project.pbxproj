@@ -18,6 +18,10 @@
 		A19D338A1E216AEF0010DC49 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33891E216AEF0010DC49 /* Networking.swift */; };
 		A19D338D1E21BF1E0010DC49 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D338C1E21BF1E0010DC49 /* CreateProfileViewController.swift */; };
 		A19D338F1E21C2A40010DC49 /* ProfileEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D338E1E21C2A40010DC49 /* ProfileEndpoints.swift */; };
+		A19D33911E228F010010DC49 /* MessageFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33901E228F010010DC49 /* MessageFeedController.swift */; };
+		A19D33941E228F590010DC49 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33931E228F590010DC49 /* StringUtils.swift */; };
+		A19D33961E2291C90010DC49 /* MessageEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33951E2291C90010DC49 /* MessageEndpoints.swift */; };
+		A19D33991E229E190010DC49 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33981E229E190010DC49 /* MessageCell.swift */; };
 		E7CA79A963DAA308D8F9CE0C /* Pods_ProfileManagementServiceTemplateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7FDD8A9BE5425D7EE18066 /* Pods_ProfileManagementServiceTemplateUITests.framework */; };
 		FDC64606ECDE355567C3B06E /* Pods_ProfileManagementServiceTemplateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22C750EFD07AB5B001CCF6B /* Pods_ProfileManagementServiceTemplateTests.framework */; };
 /* End PBXBuildFile section */
@@ -63,6 +67,10 @@
 		A19D33891E216AEF0010DC49 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		A19D338C1E21BF1E0010DC49 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		A19D338E1E21C2A40010DC49 /* ProfileEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEndpoints.swift; sourceTree = "<group>"; };
+		A19D33901E228F010010DC49 /* MessageFeedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageFeedController.swift; sourceTree = "<group>"; };
+		A19D33931E228F590010DC49 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		A19D33951E2291C90010DC49 /* MessageEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageEndpoints.swift; sourceTree = "<group>"; };
+		A19D33981E229E190010DC49 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		C22C750EFD07AB5B001CCF6B /* Pods_ProfileManagementServiceTemplateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProfileManagementServiceTemplateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED0EE2203B837417EFA79FD /* Pods_ProfileManagementServiceTemplate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProfileManagementServiceTemplate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -143,6 +151,8 @@
 		A19D33571E214E700010DC49 /* ProfileManagementServiceTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				A19D33971E229C8D0010DC49 /* Tables */,
+				A19D33921E228F400010DC49 /* Utilities */,
 				A19D338B1E21BF0A0010DC49 /* Controllers */,
 				A19D33881E216AE00010DC49 /* Networking */,
 				A19D33581E214E700010DC49 /* AppDelegate.swift */,
@@ -177,6 +187,7 @@
 			children = (
 				A19D33891E216AEF0010DC49 /* Networking.swift */,
 				A19D338E1E21C2A40010DC49 /* ProfileEndpoints.swift */,
+				A19D33951E2291C90010DC49 /* MessageEndpoints.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -186,8 +197,25 @@
 			children = (
 				A19D335A1E214E700010DC49 /* ViewController.swift */,
 				A19D338C1E21BF1E0010DC49 /* CreateProfileViewController.swift */,
+				A19D33901E228F010010DC49 /* MessageFeedController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		A19D33921E228F400010DC49 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A19D33931E228F590010DC49 /* StringUtils.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		A19D33971E229C8D0010DC49 /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				A19D33981E229E190010DC49 /* MessageCell.swift */,
+			);
+			name = Tables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,9 +501,13 @@
 			files = (
 				A19D338D1E21BF1E0010DC49 /* CreateProfileViewController.swift in Sources */,
 				A19D338A1E216AEF0010DC49 /* Networking.swift in Sources */,
+				A19D33961E2291C90010DC49 /* MessageEndpoints.swift in Sources */,
 				A19D335B1E214E700010DC49 /* ViewController.swift in Sources */,
 				A19D338F1E21C2A40010DC49 /* ProfileEndpoints.swift in Sources */,
 				A19D33591E214E700010DC49 /* AppDelegate.swift in Sources */,
+				A19D33911E228F010010DC49 /* MessageFeedController.swift in Sources */,
+				A19D33941E228F590010DC49 /* StringUtils.swift in Sources */,
+				A19D33991E229E190010DC49 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

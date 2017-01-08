@@ -16,7 +16,6 @@ func createProfile(parameters:Parameters,completionHandler: @escaping (String,Bo
         .responseJSON {response  in
             switch response.result {
             case .success:
-                print("Validation Successful")
                 let json = response.result.value as? [String: Any]
                 print(json)
 
