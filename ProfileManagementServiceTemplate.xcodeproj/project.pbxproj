@@ -25,6 +25,7 @@
 		A19D33941E228F590010DC49 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33931E228F590010DC49 /* StringUtils.swift */; };
 		A19D33961E2291C90010DC49 /* MessageEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33951E2291C90010DC49 /* MessageEndpoints.swift */; };
 		A19D33991E229E190010DC49 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33981E229E190010DC49 /* MessageCell.swift */; };
+		A1FB59ED1E23BF18004EDE53 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB59EC1E23BF18004EDE53 /* Alerts.swift */; };
 		E7CA79A963DAA308D8F9CE0C /* Pods_ProfileManagementServiceTemplateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7FDD8A9BE5425D7EE18066 /* Pods_ProfileManagementServiceTemplateUITests.framework */; };
 		FDC64606ECDE355567C3B06E /* Pods_ProfileManagementServiceTemplateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22C750EFD07AB5B001CCF6B /* Pods_ProfileManagementServiceTemplateTests.framework */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		A19D33931E228F590010DC49 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		A19D33951E2291C90010DC49 /* MessageEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageEndpoints.swift; sourceTree = "<group>"; };
 		A19D33981E229E190010DC49 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		A1FB59EC1E23BF18004EDE53 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		C22C750EFD07AB5B001CCF6B /* Pods_ProfileManagementServiceTemplateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProfileManagementServiceTemplateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED0EE2203B837417EFA79FD /* Pods_ProfileManagementServiceTemplate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProfileManagementServiceTemplate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				A19D33931E228F590010DC49 /* StringUtils.swift */,
+				A1FB59EC1E23BF18004EDE53 /* Alerts.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				TargetAttributes = {
 					A19D33541E214E700010DC49 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = XW9WKM39JU;
 						ProvisioningStyle = Automatic;
 					};
 					A19D33681E214E700010DC49 = {
@@ -516,6 +520,7 @@
 				A19D335B1E214E700010DC49 /* ViewController.swift in Sources */,
 				A19D338F1E21C2A40010DC49 /* ProfileEndpoints.swift in Sources */,
 				A19D33591E214E700010DC49 /* AppDelegate.swift in Sources */,
+				A1FB59ED1E23BF18004EDE53 /* Alerts.swift in Sources */,
 				A19D33911E228F010010DC49 /* MessageFeedController.swift in Sources */,
 				A11DC3121E2303760076ADCA /* CommentFeedController.swift in Sources */,
 				A19D33941E228F590010DC49 /* StringUtils.swift in Sources */,
@@ -670,6 +675,7 @@
 			baseConfigurationReference = 000248E930FDFA84FF91DD00 /* Pods-ProfileManagementServiceTemplate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XW9WKM39JU;
 				INFOPLIST_FILE = ProfileManagementServiceTemplate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cloudconfidant.ProfileManagementServiceTemplate;
@@ -683,6 +689,7 @@
 			baseConfigurationReference = 4EFEA6D1170F6FEF6E186BEA /* Pods-ProfileManagementServiceTemplate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XW9WKM39JU;
 				INFOPLIST_FILE = ProfileManagementServiceTemplate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cloudconfidant.ProfileManagementServiceTemplate;

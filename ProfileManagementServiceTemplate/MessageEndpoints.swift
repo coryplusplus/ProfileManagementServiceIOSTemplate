@@ -64,3 +64,34 @@ func createMessage(parameters:Parameters,completionHandler: @escaping (String,Bo
     }
     
 }
+
+func updateMessageCall(parameters:Parameters, messageId: String, completionHandler: @escaping ([String:Any],String,Bool) -> () ) -> ()
+{
+    
+    Alamofire.request("\(getBaseURL())/messages/\(messageId)", method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: defaultHeaders)
+        .responseJSON {response  in
+            switch response.result {
+            case .success:
+                let json = response.result.value as? [String: Any]
+                print(json)
+                
+                if let errorMessage = json?["errorMessage"] as? String
+                {
+                    completionHandler(json!,errorMessage, false)
+                }
+                else
+                {
+                    completionHandler(json!,"Update Successful",true)
+                }
+                
+                
+            case .failure(let error):
+                print(error)
+                bearerToken =  "None"
+                completionHandler([:],"FAILURE",false)
+                
+            }
+            
+    }
+    
+}

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 class EditMessageViewController: UIViewController {
     
@@ -35,6 +36,27 @@ class EditMessageViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func updateMessage(_ sender: AnyObject) {
+        
+        var parameters: Parameters = [:]
+        parameters["message"] = messageText.text!
+        updateMessageCall(parameters: parameters, messageId: currentMessage["id"] as! String, completionHandler: {(updatedMessage,message,success) in
+            if(success)
+            {
+                self.messageText.text = updatedMessage["message"] as! String
+                self.present(getAlert(message: "Message Updated Successfully", title: "Success", action: "Dismiss"), animated: true, completion: nil)
+
+            }
+            else{
+                self.present(getAlert(message: message, title: "Error", action: "Dismiss"), animated: true, completion: nil)
+                
+            }
+            
+        }
+        )
+        
     }
 
 
