@@ -10,8 +10,10 @@ import UIKit
 
 class MessageCell: UITableViewCell {
     
+    @IBOutlet weak var edit: UIButton!
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var submittedBy: UILabel!
+    @IBOutlet weak var commentCount: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = UITableViewCellSelectionStyle.none

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2D30A95CD5421333E30876B3 /* Pods_ProfileManagementServiceTemplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED0EE2203B837417EFA79FD /* Pods_ProfileManagementServiceTemplate.framework */; };
+		A11DC3121E2303760076ADCA /* CommentFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DC3111E2303760076ADCA /* CommentFeedController.swift */; };
+		A11DC3141E23039F0076ADCA /* CommentEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DC3131E23039F0076ADCA /* CommentEndpoints.swift */; };
+		A11DC3161E2310C60076ADCA /* EditMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DC3151E2310C60076ADCA /* EditMessageViewController.swift */; };
 		A19D33591E214E700010DC49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33581E214E700010DC49 /* AppDelegate.swift */; };
 		A19D335B1E214E700010DC49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D335A1E214E700010DC49 /* ViewController.swift */; };
 		A19D335E1E214E700010DC49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19D335C1E214E700010DC49 /* Main.storyboard */; };
@@ -51,6 +54,9 @@
 		397B1053FADF919BF1B4C31F /* Pods-ProfileManagementServiceTemplateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProfileManagementServiceTemplateTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProfileManagementServiceTemplateTests/Pods-ProfileManagementServiceTemplateTests.release.xcconfig"; sourceTree = "<group>"; };
 		4B7FDD8A9BE5425D7EE18066 /* Pods_ProfileManagementServiceTemplateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProfileManagementServiceTemplateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EFEA6D1170F6FEF6E186BEA /* Pods-ProfileManagementServiceTemplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProfileManagementServiceTemplate.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProfileManagementServiceTemplate/Pods-ProfileManagementServiceTemplate.release.xcconfig"; sourceTree = "<group>"; };
+		A11DC3111E2303760076ADCA /* CommentFeedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentFeedController.swift; sourceTree = "<group>"; };
+		A11DC3131E23039F0076ADCA /* CommentEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentEndpoints.swift; sourceTree = "<group>"; };
+		A11DC3151E2310C60076ADCA /* EditMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMessageViewController.swift; sourceTree = "<group>"; };
 		A19D33551E214E700010DC49 /* ProfileManagementServiceTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProfileManagementServiceTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19D33581E214E700010DC49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A19D335A1E214E700010DC49 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +194,7 @@
 				A19D33891E216AEF0010DC49 /* Networking.swift */,
 				A19D338E1E21C2A40010DC49 /* ProfileEndpoints.swift */,
 				A19D33951E2291C90010DC49 /* MessageEndpoints.swift */,
+				A11DC3131E23039F0076ADCA /* CommentEndpoints.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -198,6 +205,8 @@
 				A19D335A1E214E700010DC49 /* ViewController.swift */,
 				A19D338C1E21BF1E0010DC49 /* CreateProfileViewController.swift */,
 				A19D33901E228F010010DC49 /* MessageFeedController.swift */,
+				A11DC3111E2303760076ADCA /* CommentFeedController.swift */,
+				A11DC3151E2310C60076ADCA /* EditMessageViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -499,13 +508,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A11DC3161E2310C60076ADCA /* EditMessageViewController.swift in Sources */,
 				A19D338D1E21BF1E0010DC49 /* CreateProfileViewController.swift in Sources */,
 				A19D338A1E216AEF0010DC49 /* Networking.swift in Sources */,
+				A11DC3141E23039F0076ADCA /* CommentEndpoints.swift in Sources */,
 				A19D33961E2291C90010DC49 /* MessageEndpoints.swift in Sources */,
 				A19D335B1E214E700010DC49 /* ViewController.swift in Sources */,
 				A19D338F1E21C2A40010DC49 /* ProfileEndpoints.swift in Sources */,
 				A19D33591E214E700010DC49 /* AppDelegate.swift in Sources */,
 				A19D33911E228F010010DC49 /* MessageFeedController.swift in Sources */,
+				A11DC3121E2303760076ADCA /* CommentFeedController.swift in Sources */,
 				A19D33941E228F590010DC49 /* StringUtils.swift in Sources */,
 				A19D33991E229E190010DC49 /* MessageCell.swift in Sources */,
 			);

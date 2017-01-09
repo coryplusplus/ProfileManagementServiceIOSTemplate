@@ -1,4 +1,12 @@
 //
+//  CommentFeedController.swift
+//  ProfileManagementServiceTemplate
+//
+//  Created by Cory Kelly on 1/8/17.
+//  Copyright © 2017 Cory Kelly. All rights reserved.
+//
+
+//
 //  MessageFeed.swift
 //  ProfileManagementServiceTemplate
 //
@@ -20,23 +28,21 @@ import Alamofire
 
 
 
-class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate, UITextViewDelegate {
+class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UITextViewDelegate {
     @IBOutlet
     var tableView: UITableView!
     
     @IBOutlet weak var addMessageTextView: UITextView!
-    var messages : [[String:Any]] = []
+    var comments : [[String:Any]] = []
     var currentMessage :[String:Any] = [:]
     var start = 0
     var size = 10
-    var currentEditTag = 0
     
     
     
     @IBOutlet weak var clearMessage: UIButton!
     @IBOutlet weak var postMessage: UIButton!
     let keywordCharacters = NSCharacterSet.alphanumerics
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var previousButton: UIButton!
     let threshold = 600 // threshold from bottom of tableView
@@ -44,24 +50,21 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     
-    func getQueryParams(start: Int, size: Int, keyword: String) -> String
+    func getQueryParams(start: Int, size: Int) -> String
     {
-        return "start=\(start)&size=\(size)&keyword=\(searchBar.text!)"
-
+        return "start=\(start)&size=\(size)"
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
         addMessageTextView.delegate = self
         
-        populateMessages(queryParams: getQueryParams(start: start, size: size, keyword: searchBar.text!))
+        populateComments(queryParams: getQueryParams(start: start, size: size))
         refreshTable()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MessageFeedController.DismissKeyboard))
         tap.delegate = self
-        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         
-        textFieldInsideSearchBar?.font = UIFont(name: "HelveticaLTStd-Light", size: 20)
         view.addGestureRecognizer(tap)
         
     }
@@ -89,7 +92,7 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if(addMessageTextView.text! == "What's on your mind?")
+        if(addMessageTextView.text! == "Leave comment...")
         {
             addMessageTextView.text = ""
         }
@@ -97,90 +100,47 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         
-        let messageSize = StringUtils.heightForViewAll(text: messages[indexPath.row]["message"] as! String)
-        let avatar = messages[indexPath.row]["avatar"] as! Int
+        let messageSize = StringUtils.heightForViewAll(text: comments[indexPath.row]["message"] as! String)
         let calculatedSize = messageSize + 2*StringUtils.textMarginHorizontal
             + 40.0
         //let avatarSize = UIImage(named: "\(avatar).png")!.size.height
         return calculatedSize
         /*/
-        if calculatedSize > avatarSize
-        {
-            return calculatedSize
-        }
-        else
-        {
-            return avatarSize
-        }
+         if calculatedSize > avatarSize
+         {
+         return calculatedSize
+         }
+         else
+         {
+         return avatarSize
+         }
          */
         
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count;
+        return comments.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! MessageCell
         
-        let message = messages[indexPath.row]["message"] as! String
-        cell.message.text = message
-        let author = messages[indexPath.row]["author"] as! String
-        if(author == loggedInUser)
-        {
-            cell.submittedBy.isHidden = true
-            cell.edit.isHidden = false
-            cell.edit.tag = indexPath.row
-        }
-        else
-        {
-            cell.edit.isHidden = true
-            cell.submittedBy.isHidden = false
-        }
-        cell.submittedBy.text = "Submitted By: \(author)"
-        let totalComments = messages[indexPath.row]["totalComments"] as! Int
-        if(totalComments != 0)
-        {
-            cell.commentCount.text = "\(totalComments) Comments"
-        }
-        else
-        {
-            cell.commentCount.text = "No Comments"
-
-        }
+        let comment = comments[indexPath.row]["message"] as! String
+        cell.message.text = comment
+        cell.submittedBy.text = "Submitted By: \(comments[indexPath.row]["author"] as! String)"
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected cell #\(indexPath.row)!")
-        currentMessage = (messages[indexPath.row] as NSDictionary) as! [String : Any]
-        // Create an instance of PlayerTableViewController and pass the variable
-        performSegue(withIdentifier: "showComments", sender: self)
-
+        currentMessage = (comments[indexPath.row] as NSDictionary) as! [String : Any]
         
         
         
     }
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "showComments")
-        {
-            let commentController = segue.destination as! CommentFeedController
-            commentController.currentMessage = currentMessage
-        }
-        if(segue.identifier == "editMessage")
-        {
-            let editMessageViewController = segue.destination as! EditMessageViewController
-            editMessageViewController.currentMessage = messages[currentEditTag]
-  
-        }
-
-    }
-    
     
     func refreshTable()
     {
@@ -194,56 +154,38 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
-        messages = []
+        comments = []
         start = 0
-        populateMessages(queryParams: getQueryParams(start: 0, size: 10, keyword: ""))
+        populateComments(queryParams: getQueryParams(start: 0, size: 10))
         refreshTable()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if(searchText == "")
         {
-            messages = []
+            comments = []
             start = 0
-            populateMessages(queryParams: getQueryParams(start: 0, size: 10, keyword: ""))
+            populateComments(queryParams: getQueryParams(start: 0, size: 10))
             refreshTable()
         }
     }
-    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let range = text.rangeOfCharacter(from: keywordCharacters)
-        //Handle Search
-        if(text.characters.count == 1 && text == "\n")
-        {
-            return true
-        }
-        //Handle backspace
-        if(text.characters.count == 0)
-        {
-            return true
-        }
-        if let _ = range{
-            return true
-        }
-        return false
-    }
+
     
-    func populateMessages(queryParams : String)
+    func populateComments(queryParams : String)
     {
-        getMessages(queryParameters: queryParams, completionHandler: {(json, success) in
+        getComments(queryParameters: queryParams, messageId: currentMessage["id"] as! String, completionHandler: {(json, success) in
             print(success)
-            self.messages += json
+            self.comments += json
             self.tableView.reloadData()
             }
         )
-
+        
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        let searchString = StringUtils.removeQuotes(string: searchBar.text!)
-        messages = []
-        currentMessage = [:]
+        comments = []
         start = 0
-        populateMessages(queryParams: getQueryParams(start: 0, size: 10, keyword: searchString))
+        populateComments(queryParams: getQueryParams(start: 0, size: 10))
         refreshTable()
         
     }
@@ -251,12 +193,11 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getNextRequests() {
         start += size
-        populateMessages(queryParams: getQueryParams(start: start, size: size, keyword: searchBar.text!))
+        populateComments(queryParams: getQueryParams(start: start, size: size))
         
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        searchBar.resignFirstResponder()
         let contentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
         
@@ -271,21 +212,19 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         addMessageTextView.text = ""
     }
     
-    @IBAction func postMessage(_ sender: AnyObject) {
+    @IBAction func postComment(_ sender: AnyObject) {
         
         var parameters: Parameters = [:]
         parameters["author"] = loggedInUser
         parameters["message"] = addMessageTextView.text!
-        parameters["messageName"] = "Message"
-        createMessage(parameters: parameters, completionHandler: {(message,success) in
+        createComment(parameters: parameters, messageId:currentMessage["id"] as! String, completionHandler: {(message,success) in
             if(success)
             {
-                self.messages = []
-                self.currentMessage = [:]
+                self.comments = []
                 self.start = 0
-                self.populateMessages(queryParams: self.getQueryParams(start: 0, size: 10, keyword: self.searchBar.text!))
+                self.populateComments(queryParams: self.getQueryParams(start: 0, size: 10))
                 self.refreshTable()
-                self.addMessageTextView.text = "What's on your mind?"
+                self.addMessageTextView.text = "Comment..."
             }
             else{
                 let alertController = UIAlertController(title: "Error", message:
@@ -298,19 +237,12 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
             
             }
         )
-
+        
     }
     
-    @IBAction func editPressed(_ sender: AnyObject) {
-        
-        print("Sender tag is equal to \(sender.tag)")
-        currentEditTag = sender.tag
-        performSegue(withIdentifier: "editMessage", sender: sender)
-
-    }
     
     
     
 }
- 
+
 
