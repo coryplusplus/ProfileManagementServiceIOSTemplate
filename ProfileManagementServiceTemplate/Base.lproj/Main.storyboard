@@ -31,7 +31,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3F-a1-OIy">
                                 <rect key="frame" x="133" y="79" width="109" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="109" id="jjQ-Vu-hyj"/>
+                                    <constraint firstAttribute="width" constant="109" id="nRb-Tu-MfO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -44,17 +44,26 @@
                                     <action selector="updateMessage:" destination="dMs-QM-dVU" eventType="touchUpInside" id="09b-XL-Kgd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4E-31-PGO">
+                                <rect key="frame" x="17" y="303" width="45" height="30"/>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="deletePressed:" destination="dMs-QM-dVU" eventType="touchUpInside" id="SZx-ga-ZoL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xvM-yG-cZu" firstAttribute="trailing" secondItem="whs-vW-V0J" secondAttribute="trailing" id="5Be-Uh-qns"/>
-                            <constraint firstItem="whs-vW-V0J" firstAttribute="top" secondItem="xvM-yG-cZu" secondAttribute="bottom" constant="8" symbolic="YES" id="EKd-tr-ggK"/>
-                            <constraint firstItem="m3F-a1-OIy" firstAttribute="centerX" secondItem="xvM-yG-cZu" secondAttribute="centerX" id="Eht-km-eLb"/>
-                            <constraint firstItem="ezF-jF-UUA" firstAttribute="top" secondItem="whs-vW-V0J" secondAttribute="bottom" constant="334" id="Pzf-PO-9bR"/>
-                            <constraint firstItem="m3F-a1-OIy" firstAttribute="top" secondItem="VrO-ur-plO" secondAttribute="bottom" constant="15" id="e5L-KF-qfk"/>
-                            <constraint firstItem="xvM-yG-cZu" firstAttribute="trailing" secondItem="UBo-Cx-b3e" secondAttribute="trailingMargin" id="gOz-nO-ae6"/>
-                            <constraint firstItem="xvM-yG-cZu" firstAttribute="top" secondItem="m3F-a1-OIy" secondAttribute="bottom" constant="17" id="qgL-D1-iaJ"/>
-                            <constraint firstItem="xvM-yG-cZu" firstAttribute="leading" secondItem="UBo-Cx-b3e" secondAttribute="leadingMargin" id="xGH-VT-x9k"/>
+                            <constraint firstItem="V4E-31-PGO" firstAttribute="baseline" secondItem="whs-vW-V0J" secondAttribute="baseline" id="5Mg-Jx-qEf"/>
+                            <constraint firstItem="xvM-yG-cZu" firstAttribute="trailing" secondItem="UBo-Cx-b3e" secondAttribute="trailingMargin" id="7WU-2L-TZ4"/>
+                            <constraint firstItem="V4E-31-PGO" firstAttribute="top" secondItem="xvM-yG-cZu" secondAttribute="bottom" constant="8" symbolic="YES" id="GFs-tm-8Cg"/>
+                            <constraint firstItem="xvM-yG-cZu" firstAttribute="leading" secondItem="UBo-Cx-b3e" secondAttribute="leadingMargin" id="H4Y-X7-FRs"/>
+                            <constraint firstItem="xvM-yG-cZu" firstAttribute="top" secondItem="m3F-a1-OIy" secondAttribute="bottom" constant="17" id="Kb5-pA-hzn"/>
+                            <constraint firstItem="V4E-31-PGO" firstAttribute="leading" secondItem="UBo-Cx-b3e" secondAttribute="leadingMargin" constant="1" id="QuU-OV-jxy"/>
+                            <constraint firstItem="m3F-a1-OIy" firstAttribute="top" secondItem="VrO-ur-plO" secondAttribute="bottom" constant="15" id="Rmm-ad-j0k"/>
+                            <constraint firstItem="m3F-a1-OIy" firstAttribute="centerX" secondItem="xvM-yG-cZu" secondAttribute="centerX" id="UMq-m8-Dxy"/>
+                            <constraint firstItem="ezF-jF-UUA" firstAttribute="top" secondItem="V4E-31-PGO" secondAttribute="bottom" constant="334" id="j9d-xN-qdt"/>
+                            <constraint firstItem="xvM-yG-cZu" firstAttribute="trailing" secondItem="whs-vW-V0J" secondAttribute="trailing" id="yLH-03-fyR"/>
                         </constraints>
                     </view>
                     <connections>
@@ -629,9 +638,6 @@
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH6-Us-iTo">
                                 <rect key="frame" x="133" y="79" width="109" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="109" id="AD5-8B-3qb"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -643,17 +649,26 @@
                                     <action selector="updateComment:" destination="D7K-HG-AKk" eventType="touchUpInside" id="JRm-oU-0c4"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W81-FY-MLV">
+                                <rect key="frame" x="17" y="303" width="45" height="30"/>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="deletePressed:" destination="D7K-HG-AKk" eventType="touchUpInside" id="Kyq-ux-1yG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dH6-Us-iTo" firstAttribute="top" secondItem="Si1-DJ-yXt" secondAttribute="bottom" constant="15" id="274-QN-SnL"/>
-                            <constraint firstItem="dH6-Us-iTo" firstAttribute="centerX" secondItem="yZc-4q-uUy" secondAttribute="centerX" id="4Sk-qi-CZT"/>
-                            <constraint firstItem="yZc-4q-uUy" firstAttribute="trailing" secondItem="cae-Qp-nx8" secondAttribute="trailing" id="P5J-AD-zxN"/>
-                            <constraint firstItem="yZc-4q-uUy" firstAttribute="leading" secondItem="tDK-zJ-XUc" secondAttribute="leadingMargin" id="Trn-sB-8lq"/>
-                            <constraint firstItem="yZc-4q-uUy" firstAttribute="trailing" secondItem="tDK-zJ-XUc" secondAttribute="trailingMargin" id="X12-zj-tPv"/>
-                            <constraint firstItem="yZc-4q-uUy" firstAttribute="top" secondItem="dH6-Us-iTo" secondAttribute="bottom" constant="17" id="afR-H4-dJw"/>
-                            <constraint firstItem="oGd-gc-Qfy" firstAttribute="top" secondItem="cae-Qp-nx8" secondAttribute="bottom" constant="334" id="rID-pk-9i5"/>
-                            <constraint firstItem="cae-Qp-nx8" firstAttribute="top" secondItem="yZc-4q-uUy" secondAttribute="bottom" constant="8" symbolic="YES" id="s7Z-Xh-Uq1"/>
+                            <constraint firstItem="dH6-Us-iTo" firstAttribute="centerX" secondItem="yZc-4q-uUy" secondAttribute="centerX" id="4PP-HV-FEu"/>
+                            <constraint firstItem="yZc-4q-uUy" firstAttribute="top" secondItem="dH6-Us-iTo" secondAttribute="bottom" constant="17" id="5gH-zZ-bqF"/>
+                            <constraint firstItem="yZc-4q-uUy" firstAttribute="trailing" secondItem="tDK-zJ-XUc" secondAttribute="trailingMargin" id="8Hi-aj-lXp"/>
+                            <constraint firstItem="W81-FY-MLV" firstAttribute="baseline" secondItem="cae-Qp-nx8" secondAttribute="baseline" id="IT9-eh-Pla"/>
+                            <constraint firstItem="dH6-Us-iTo" firstAttribute="top" secondItem="Si1-DJ-yXt" secondAttribute="bottom" constant="15" id="V60-q6-KSJ"/>
+                            <constraint firstItem="oGd-gc-Qfy" firstAttribute="top" secondItem="W81-FY-MLV" secondAttribute="bottom" constant="334" id="Z0N-6g-c1S"/>
+                            <constraint firstItem="W81-FY-MLV" firstAttribute="leading" secondItem="tDK-zJ-XUc" secondAttribute="leadingMargin" constant="1" id="bOX-If-Wmx"/>
+                            <constraint firstItem="yZc-4q-uUy" firstAttribute="trailing" secondItem="cae-Qp-nx8" secondAttribute="trailing" id="l4U-TY-1KQ"/>
+                            <constraint firstItem="W81-FY-MLV" firstAttribute="top" secondItem="yZc-4q-uUy" secondAttribute="bottom" constant="8" symbolic="YES" id="s0f-bC-E2c"/>
+                            <constraint firstItem="yZc-4q-uUy" firstAttribute="leading" secondItem="tDK-zJ-XUc" secondAttribute="leadingMargin" id="vjw-B2-82i"/>
                         </constraints>
                     </view>
                     <connections>

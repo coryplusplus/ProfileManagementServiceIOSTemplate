@@ -95,3 +95,34 @@ func updateMessageCall(parameters:Parameters, messageId: String, completionHandl
     }
     
 }
+
+func deleteMessage(messageId: String, completionHandler: @escaping ([String:Any],String,Bool) -> () ) -> ()
+{
+    
+    Alamofire.request("\(getBaseURL())/messages/\(messageId)", method: .delete, encoding: JSONEncoding.default, headers: defaultHeaders)
+        .responseJSON {response  in
+            switch response.result {
+            case .success:
+                let json = response.result.value as? [String: Any]
+                print(json)
+                
+                if let errorMessage = json?["errorMessage"] as? String
+                {
+                    completionHandler(json!,errorMessage, false)
+                }
+                else
+                {
+                    completionHandler(json!,"Delete Successful",true)
+                }
+                
+                
+            case .failure(let error):
+                print(error)
+                bearerToken =  "None"
+                completionHandler([:],"FAILURE",false)
+                
+            }
+            
+    }
+    
+}

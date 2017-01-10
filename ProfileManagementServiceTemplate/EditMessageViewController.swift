@@ -25,7 +25,7 @@ class EditMessageViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         messageText.text = currentMessage["message"] as! String
-
+        
         
         
         
@@ -47,7 +47,7 @@ class EditMessageViewController: UIViewController {
             {
                 self.messageText.text = updatedMessage["message"] as! String
                 self.present(getAlert(message: "Message Updated Successfully", title: "Success", action: "Dismiss"), animated: true, completion: nil)
-
+                
             }
             else{
                 self.present(getAlert(message: message, title: "Error", action: "Dismiss"), animated: true, completion: nil)
@@ -58,6 +58,26 @@ class EditMessageViewController: UIViewController {
         )
         
     }
-
-
+    
+    @IBAction func deletePressed(_ sender: Any) {
+        deleteMessage(messageId: currentMessage["id"] as! String, completionHandler: {(updatedMessage,message,success) in
+            if(success)
+            {
+                if let navController = self.navigationController {
+                    navController.popViewController(animated: true)
+                }
+                
+            }
+            else{
+                self.present(getAlert(message: message, title: "Error", action: "Dismiss"), animated: true, completion: nil)
+                
+            }
+            
+        }
+        )
+        
+    }
+    
 }
+
+

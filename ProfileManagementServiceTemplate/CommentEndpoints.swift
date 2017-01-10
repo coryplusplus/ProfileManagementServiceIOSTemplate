@@ -95,3 +95,25 @@ func updateCommentCall(parameters:Parameters, messageId: String, commentId: Stri
     }
     
 }
+
+func deleteComment(messageId: String, commentId: String, completionHandler: @escaping (String,Bool) -> () ) -> ()
+{
+    
+    Alamofire.request("\(getBaseURL())/messages/\(messageId)/comments/\(commentId)", method: .delete , encoding: JSONEncoding.default, headers: defaultHeaders)
+        .responseJSON {response  in
+            switch response.result {
+            case .success:
+                let json = response.result.value as? [String: Any]
+                print(json)
+
+                completionHandler("SUCCESS", true)
+            case .failure(let error):
+                print(error)
+                bearerToken =  "None"
+                completionHandler("FAILURE",false)
+                
+            }
+            
+    }
+    
+}

@@ -60,5 +60,28 @@ class EditCommentViewController: UIViewController {
         
     }
     
+    @IBAction func deletePressed(_ sender: Any) {
+        
+        
+        deleteComment(messageId: currentComment["messageId"] as! String, commentId: currentComment["id"] as! String, completionHandler: {(message,success) in
+            if(success)
+            {
+                if let navController = self.navigationController {
+                    navController.popViewController(animated: true)
+                }
+                
+            }
+            else{
+                self.present(getAlert(message: message, title: "Error", action: "Dismiss"), animated: true, completion: nil)
+                
+            }
+            
+        }
+        )
+        
+    }
+    
+    
+    
     
 }
