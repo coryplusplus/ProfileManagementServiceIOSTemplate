@@ -140,17 +140,17 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
         cell.message.text = comment
         if(author == loggedInUser)
         {
-            cell.submittedBy.isHidden = true
+            cell.authorLink.isHidden = true
             cell.edit.isHidden = false
             cell.edit.tag = indexPath.row
         }
         else
         {
             cell.edit.isHidden = true
-            cell.submittedBy.isHidden = false
+            cell.authorLink.isHidden = false
         }
-
-        cell.submittedBy.text = "Submitted By: \(comments[indexPath.row]["author"] as! String)"
+        
+        cell.authorLink.setTitle(author, for: .normal)
         
         return cell
     }

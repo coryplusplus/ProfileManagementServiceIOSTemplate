@@ -1,10 +1,11 @@
 //
-//  MessageFeed.swift
+//  ProfileViewController.swift
 //  ProfileManagementServiceTemplate
 //
 //  Created by Cory Kelly on 1/8/17.
 //  Copyright © 2017 Cory Kelly. All rights reserved.
 //
+
 
 
 import UIKit
@@ -13,17 +14,19 @@ import Alamofire
 
 
 
-class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate, UITextViewDelegate {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate, UITextViewDelegate {
     @IBOutlet
     var tableView: UITableView!
     
-    @IBOutlet weak var addMessageTextView: UITextView!
     var messages : [[String:Any]] = []
     var currentMessage :[String:Any] = [:]
     var start = 0
     var size = 10
     var currentEditTag = 0
+    var currentProfile : [String: Any] = [:]
+    var profileName = ""
     
+    @IBOutlet weak var profileNameLabel: UILabel!
     
     
     @IBOutlet weak var clearMessage: UIButton!
@@ -52,19 +55,19 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         start = 0
         populateMessages(queryParams: getQueryParams(start: start, size: size, keyword: searchBar.text!))
         refreshTable()
-
+        profileNameLabel.text = profileName
+        
     }
     
     func getQueryParams(start: Int, size: Int, keyword: String) -> String
     {
-        return "start=\(start)&size=\(size)&keyword=\(searchBar.text!)"
-
+        return "start=\(start)&size=\(size)&keyword=\(searchBar.text!)&author=\(profileName)"
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        addMessageTextView.delegate = self
         
         //populateMessages(queryParams: getQueryParams(start: start, size: size, keyword: searchBar.text!))
         //refreshTable()
@@ -98,13 +101,7 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         self.isLoadingMore = false
     }
     
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if(addMessageTextView.text! == "What's on your mind?")
-        {
-            addMessageTextView.text = ""
-        }
-    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         
@@ -115,14 +112,14 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         //let avatarSize = UIImage(named: "\(avatar).png")!.size.height
         return calculatedSize
         /*/
-        if calculatedSize > avatarSize
-        {
-            return calculatedSize
-        }
-        else
-        {
-            return avatarSize
-        }
+         if calculatedSize > avatarSize
+         {
+         return calculatedSize
+         }
+         else
+         {
+         return avatarSize
+         }
          */
         
         
@@ -141,18 +138,13 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         let author = messages[indexPath.row]["author"] as! String
         if(author == loggedInUser)
         {
-            cell.authorLink.isHidden = true
             cell.edit.isHidden = false
             cell.edit.tag = indexPath.row
         }
         else
         {
             cell.edit.isHidden = true
-            cell.authorLink.isHidden = false
         }
-        
-        cell.authorLink.tag = indexPath.row
-        cell.authorLink.setTitle(author, for: .normal)
         let totalComments = messages[indexPath.row]["totalComments"] as! Int
         if(totalComments != 0)
         {
@@ -161,7 +153,7 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         else
         {
             cell.commentCount.text = "No Comments"
-
+            
         }
         
         return cell
@@ -172,7 +164,7 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         currentMessage = (messages[indexPath.row] as NSDictionary) as! [String : Any]
         // Create an instance of PlayerTableViewController and pass the variable
         performSegue(withIdentifier: "showComments", sender: self)
-
+        
         
         
         
@@ -189,16 +181,9 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         {
             let editMessageViewController = segue.destination as! EditMessageViewController
             editMessageViewController.currentMessage = messages[currentEditTag]
-  
-        }
-        if(segue.identifier == "showProfile")
-        {
-            let profileViewController = segue.destination as! ProfileViewController
-            let message = messages[currentEditTag]
-            profileViewController.profileName = message["author"] as! String
             
         }
-
+        
     }
     
     
@@ -253,9 +238,9 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
             print(success)
             self.messages += json
             self.tableView.reloadData()
-            }
+        }
         )
-
+        
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -287,56 +272,17 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    @IBAction func clearMessage(_ sender: AnyObject) {
-        addMessageTextView.text = ""
-    }
-    
-    @IBAction func postMessage(_ sender: AnyObject) {
-        
-        var parameters: Parameters = [:]
-        parameters["author"] = loggedInUser
-        parameters["message"] = addMessageTextView.text!
-        parameters["messageName"] = "Message"
-        createMessage(parameters: parameters, completionHandler: {(message,success) in
-            if(success)
-            {
-                self.messages = []
-                self.currentMessage = [:]
-                self.start = 0
-                self.populateMessages(queryParams: self.getQueryParams(start: 0, size: 10, keyword: self.searchBar.text!))
-                self.refreshTable()
-                self.addMessageTextView.text = "What's on your mind?"
-            }
-            else{
-                let alertController = UIAlertController(title: "Error", message:
-                    message, preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                
-                self.present(alertController, animated: true, completion: nil)
-                
-            }
-            
-            }
-        )
-
-    }
     
     @IBAction func editPressed(_ sender: AnyObject) {
         
         print("Sender tag is equal to \(sender.tag)")
         currentEditTag = sender.tag
         performSegue(withIdentifier: "editMessage", sender: sender)
-
+        
     }
     
-    @IBAction func authorLinkPressed(_ sender: AnyObject) {
-        print("Sender tag is equal to \(sender.tag)")
-        currentEditTag = sender.tag
-        performSegue(withIdentifier: "showProfile", sender: sender)
-
-    }
     
     
 }
- 
+
 

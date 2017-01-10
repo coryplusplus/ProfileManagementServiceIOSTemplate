@@ -12,8 +12,8 @@ class MessageCell: UITableViewCell {
     
     @IBOutlet weak var edit: UIButton!
     @IBOutlet weak var message: UILabel!
-    @IBOutlet weak var submittedBy: UILabel!
     @IBOutlet weak var commentCount: UILabel!
+    @IBOutlet weak var authorLink: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = UITableViewCellSelectionStyle.none

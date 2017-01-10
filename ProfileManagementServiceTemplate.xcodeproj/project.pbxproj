@@ -12,6 +12,7 @@
 		A11DC3141E23039F0076ADCA /* CommentEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DC3131E23039F0076ADCA /* CommentEndpoints.swift */; };
 		A11DC3161E2310C60076ADCA /* EditMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DC3151E2310C60076ADCA /* EditMessageViewController.swift */; };
 		A13B4C751E2498220017A223 /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B4C741E2498220017A223 /* EditCommentViewController.swift */; };
+		A13B4C771E2578DB0017A223 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B4C761E2578DB0017A223 /* ProfileViewController.swift */; };
 		A19D33591E214E700010DC49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D33581E214E700010DC49 /* AppDelegate.swift */; };
 		A19D335B1E214E700010DC49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D335A1E214E700010DC49 /* ViewController.swift */; };
 		A19D335E1E214E700010DC49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19D335C1E214E700010DC49 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		A11DC3131E23039F0076ADCA /* CommentEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentEndpoints.swift; sourceTree = "<group>"; };
 		A11DC3151E2310C60076ADCA /* EditMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMessageViewController.swift; sourceTree = "<group>"; };
 		A13B4C741E2498220017A223 /* EditCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
+		A13B4C761E2578DB0017A223 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A19D33551E214E700010DC49 /* ProfileManagementServiceTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProfileManagementServiceTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19D33581E214E700010DC49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A19D335A1E214E700010DC49 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				A11DC3111E2303760076ADCA /* CommentFeedController.swift */,
 				A11DC3151E2310C60076ADCA /* EditMessageViewController.swift */,
 				A13B4C741E2498220017A223 /* EditCommentViewController.swift */,
+				A13B4C761E2578DB0017A223 /* ProfileViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				A1FB59ED1E23BF18004EDE53 /* Alerts.swift in Sources */,
 				A19D33911E228F010010DC49 /* MessageFeedController.swift in Sources */,
 				A11DC3121E2303760076ADCA /* CommentFeedController.swift in Sources */,
+				A13B4C771E2578DB0017A223 /* ProfileViewController.swift in Sources */,
 				A19D33941E228F590010DC49 /* StringUtils.swift in Sources */,
 				A19D33991E229E190010DC49 /* MessageCell.swift in Sources */,
 			);
