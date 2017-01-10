@@ -543,6 +543,9 @@
                                                     <rect key="frame" x="8" y="88" width="46" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="authorLinkPressed:" destination="7e7-JA-sti" eventType="touchUpInside" id="T3e-KG-5EK"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -594,6 +597,7 @@
                         <outlet property="clearMessage" destination="4pJ-dC-WIc" id="uWa-Jq-G3U"/>
                         <outlet property="tableView" destination="1OY-DL-yrn" id="SIY-dZ-p0j"/>
                         <segue destination="D7K-HG-AKk" kind="show" identifier="editComment" id="sxL-Lt-PgY"/>
+                        <segue destination="VYK-ZI-wI7" kind="show" identifier="showProfile" id="zJR-ps-0PC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g1o-dX-lAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -631,13 +635,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZc-4q-uUy">
-                                <rect key="frame" x="16" y="117" width="343" height="178"/>
+                                <rect key="frame" x="16" y="73" width="343" height="222"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH6-Us-iTo">
-                                <rect key="frame" x="133" y="79" width="109" height="21"/>
+                                <rect key="frame" x="133" y="35" width="109" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -782,11 +786,16 @@
                         <outlet property="profileNameLabel" destination="Rvw-Lk-CDs" id="cps-Q0-Z0n"/>
                         <outlet property="searchBar" destination="ZUB-H4-RLw" id="eaC-11-rIA"/>
                         <outlet property="tableView" destination="9JN-b8-zfx" id="Ybo-vc-ToY"/>
+                        <segue destination="7e7-JA-sti" kind="show" identifier="showComments" id="xgQ-Ng-RzA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y77-Yt-al6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-368.80000000000001" y="-640.92953523238384"/>
+            <point key="canvasLocation" x="-642" y="-635"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="zJR-ps-0PC"/>
+        <segue reference="xgQ-Ng-RzA"/>
+    </inferredMetricsTieBreakers>
 </document>

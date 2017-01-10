@@ -52,12 +52,21 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         start = 0
         populateMessages(queryParams: getQueryParams(start: start, size: size, keyword: searchBar.text!))
         refreshTable()
+        self.resignFirstResponder()
+        
 
     }
     
     func getQueryParams(start: Int, size: Int, keyword: String) -> String
     {
-        return "start=\(start)&size=\(size)&keyword=\(searchBar.text!)"
+        if searchBar.text != nil && searchBar.text! != ""
+        {
+            return "start=\(start)&size=\(size)&keyword=\(searchBar.text!)"
+        }
+        else
+        {
+            return "start=\(start)&size=\(size)"
+        }
 
     }
     

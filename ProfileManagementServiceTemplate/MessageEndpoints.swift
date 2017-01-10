@@ -12,8 +12,9 @@ import Alamofire
 func getMessages(queryParameters : String, completionHandler: @escaping ([[String: Any]],Bool) -> () ) -> ()
 {
     
-    print("Calling get messages endpoint with query parameters: \(queryParameters)")
-    Alamofire.request("\(baseURL)/messages?\(queryParameters)", headers: defaultHeaders)
+    let encodedQueryParameters = queryParameters.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+    print("Calling get messages endpoint with query parameters: \(encodedQueryParameters!)")
+    Alamofire.request("\(baseURL)/messages?\(encodedQueryParameters!)", headers: defaultHeaders)
         .responseJSON {response  in
             switch response.result {
             case .success:

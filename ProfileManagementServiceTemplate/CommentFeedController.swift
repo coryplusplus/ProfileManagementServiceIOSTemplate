@@ -57,8 +57,10 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
         start = 0
         populateComments(queryParams: getQueryParams(start: start, size: size))
         refreshTable()
+        self.resignFirstResponder()
         
     }
+    
     
     func getQueryParams(start: Int, size: Int) -> String
     {
@@ -272,6 +274,14 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
             
         }
         
+        if(segue.identifier == "showProfile")
+        {
+            let profileViewController = segue.destination as! ProfileViewController
+            let comment = comments[currentEditTag]
+            profileViewController.profileName = comment["author"] as! String
+            
+        }
+        
     }
     
     @IBAction func editPressed(_ sender: AnyObject) {
@@ -279,6 +289,13 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
         currentEditTag = sender.tag
         performSegue(withIdentifier: "editComment", sender: sender)
 
+    }
+    
+    @IBAction func authorLinkPressed(_ sender: AnyObject) {
+        print("Sender tag is equal to \(sender.tag)")
+        currentEditTag = sender.tag
+        performSegue(withIdentifier: "showProfile", sender: sender)
+        
     }
     
     
