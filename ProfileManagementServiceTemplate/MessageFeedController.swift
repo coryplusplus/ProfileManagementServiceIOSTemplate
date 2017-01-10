@@ -44,6 +44,24 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     
+    
+    override func viewWillDisappear(_ animated : Bool) {
+        super.viewWillDisappear(animated)
+        
+        if (self.isMovingFromParentViewController){
+            // Your code...
+        }
+    }
+    
+    override func viewWillAppear(_ animated : Bool) {
+        super.viewWillAppear(animated)
+        messages = []
+        start = 0
+        populateMessages(queryParams: getQueryParams(start: start, size: size, keyword: searchBar.text!))
+        refreshTable()
+
+    }
+    
     func getQueryParams(start: Int, size: Int, keyword: String) -> String
     {
         return "start=\(start)&size=\(size)&keyword=\(searchBar.text!)"
@@ -55,8 +73,8 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         searchBar.delegate = self
         addMessageTextView.delegate = self
         
-        populateMessages(queryParams: getQueryParams(start: start, size: size, keyword: searchBar.text!))
-        refreshTable()
+        //populateMessages(queryParams: getQueryParams(start: start, size: size, keyword: searchBar.text!))
+        //refreshTable()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MessageFeedController.DismissKeyboard))
         tap.delegate = self
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField

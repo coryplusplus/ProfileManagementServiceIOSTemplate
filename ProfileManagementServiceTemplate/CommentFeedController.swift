@@ -37,6 +37,8 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
     var currentMessage :[String:Any] = [:]
     var start = 0
     var size = 10
+    var currentEditTag = 0
+
     
     
     
@@ -49,6 +51,14 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
     var isLoadingMore = false // flag
     
     
+    override func viewWillAppear(_ animated : Bool) {
+        super.viewWillAppear(animated)
+        comments = []
+        start = 0
+        populateComments(queryParams: getQueryParams(start: start, size: size))
+        refreshTable()
+        
+    }
     
     func getQueryParams(start: Int, size: Int) -> String
     {
@@ -60,8 +70,6 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         addMessageTextView.delegate = self
         
-        populateComments(queryParams: getQueryParams(start: start, size: size))
-        refreshTable()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MessageFeedController.DismissKeyboard))
         tap.delegate = self
         
@@ -128,7 +136,20 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! MessageCell
         
         let comment = comments[indexPath.row]["message"] as! String
+        let author = comments[indexPath.row]["author"] as! String
         cell.message.text = comment
+        if(author == loggedInUser)
+        {
+            cell.submittedBy.isHidden = true
+            cell.edit.isHidden = false
+            cell.edit.tag = indexPath.row
+        }
+        else
+        {
+            cell.edit.isHidden = true
+            cell.submittedBy.isHidden = false
+        }
+
         cell.submittedBy.text = "Submitted By: \(comments[indexPath.row]["author"] as! String)"
         
         return cell
@@ -241,6 +262,24 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if(segue.identifier == "editComment")
+        {
+            let editCommentViewController = segue.destination as! EditCommentViewController
+            editCommentViewController.currentComment = comments[currentEditTag]
+            
+        }
+        
+    }
+    
+    @IBAction func editPressed(_ sender: AnyObject) {
+        print("Sender tag is equal to \(sender.tag)")
+        currentEditTag = sender.tag
+        performSegue(withIdentifier: "editComment", sender: sender)
+
+    }
     
     
 }
