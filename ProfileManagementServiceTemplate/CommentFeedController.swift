@@ -156,6 +156,7 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
             cell.authorLink.isHidden = false
         }
         
+        cell.authorLink.tag = indexPath.row
         cell.authorLink.setTitle(author, for: .normal)
         
         return cell
@@ -282,6 +283,7 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
         {
             let profileViewController = segue.destination as! ProfileViewController
             let comment = comments[currentEditTag]
+            print(comment["author"] as! String)
             profileViewController.profileName = comment["author"] as! String
             
         }
