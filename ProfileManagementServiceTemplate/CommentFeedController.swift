@@ -39,6 +39,7 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
     var size = 10
     var currentEditTag = 0
 
+    @IBOutlet weak var message: UILabel!
     
     
     
@@ -55,9 +56,9 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewWillAppear(animated)
         comments = []
         start = 0
+        tableView.reloadData()
         populateComments(queryParams: getQueryParams(start: start, size: size))
-        refreshTable()
-        self.resignFirstResponder()
+        message.text = currentMessage["message"] as! String
         
     }
     
@@ -136,7 +137,10 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! MessageCell
-        
+        if(comments.count == 0)
+        {
+            return cell
+        }
         let comment = comments[indexPath.row]["message"] as! String
         let author = comments[indexPath.row]["author"] as! String
         cell.message.text = comment
@@ -159,7 +163,6 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected cell #\(indexPath.row)!")
-        currentMessage = (comments[indexPath.row] as NSDictionary) as! [String : Any]
         
         
         
@@ -196,10 +199,11 @@ class CommentFeedController: UIViewController, UITableViewDelegate, UITableViewD
     
     func populateComments(queryParams : String)
     {
+
         getComments(queryParameters: queryParams, messageId: currentMessage["id"] as! String, completionHandler: {(json, success) in
             print(success)
             self.comments += json
-            self.tableView.reloadData()
+            self.refreshTable()
             }
         )
         

@@ -52,7 +52,6 @@ class MessageFeedController: UIViewController, UITableViewDelegate, UITableViewD
         start = 0
         populateMessages(queryParams: getQueryParams(start: start, size: size, keyword: searchBar.text!))
         refreshTable()
-        self.resignFirstResponder()
         
 
     }

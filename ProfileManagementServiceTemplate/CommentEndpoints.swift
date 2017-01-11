@@ -12,7 +12,8 @@ import Alamofire
 func getComments(queryParameters : String, messageId : String,  completionHandler: @escaping ([[String: Any]],Bool) -> () ) -> ()
 {
     
-    print("Calling get messages endpoint with query parameters: \(queryParameters)")
+    print("Calling get comments endpoint with query parameters: \(queryParameters)")
+    print("\(baseURL)/messages/\(messageId)/comments?\(queryParameters)")
     Alamofire.request("\(baseURL)/messages/\(messageId)/comments?\(queryParameters)", headers: defaultHeaders)
         .responseJSON {response  in
             switch response.result {
